@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="increment_field_visit_sequence" model="ir.sequence">
+            <field name="name">Field Incrementation</field>
+            <field name="code">increment_field_visit</field>
+            <field name="prefix"></field>
+            <field name="padding">3</field>
+            <field name="company_id" eval="True"/>
+        </record>
+        <!-- field_visit tree view -->
+        <record id="field_visit_tree" model="ir.ui.view">
+            <field name="name">field_visit</field>
+                <field name="model">field.visit</field>
+                <field name="arch" type="xml">
+                    <tree>
+                    <field name="company_id"/>
+                        <field name="visit_number"/>
+                        <field name="visit_type"/>
+                        <field name="visit_date"/>
+                        <field name="section"/>
+                        <field name="project_id"/>
+
+                    </tree>
+                </field>
+            </record>
+
+            <!-- field_visit form view -->
+            <record id="field_visit_view_form" model="ir.ui.view">
+                <field name="name">field_visit</field>
+                <field name="model">field.visit</field>
+                <field name="arch" type="xml">
+                    <form string="">
+                    <button string="update profile" name="update_profile" type="object" class="oe_highlight" attrs="{'invisible': [('project_id', '=', 'false')]}"/>
+                        <sheet>
+                        <group>
+                            <field name="company_id"/>
+                        </group>
+                            <group col="4" colspan="4">
+                                <field name="visit_number"/>
+                                <field name="visit_type"/>
+                                <field name="visit_date"/>
+                                <field name="section"/>
+                                <field name="project_id"/>
+                                <field name="projct_number"/>
+                                <field name="projct_state"/>
+
+                            </group>
+                            <notebook>
+                                <page string="بيانات المشروع">
+                                    <group col="4" colspan="4">
+                                        <field name="area"/>
+                                        <field name="land_number"/>
+                                        <field name="square"/>
+                                        <field name="total_area"/>
+                                        <field name="construction_ratio"/>
+                                        <field name="land_ownership"/>
+                                        <field name="cost"/>
+                                        <field name="construction_position"/>
+                                        <field name="description_buildings"/>                                        
+                                    </group>
+                                </page>
+                                <page string="اثار الانتاج على البيئه">
+                                    <group col="4" colspan="4">
+                                        <field name="waste_type"/>
+                                        <field name="description_waste"/>
+                                        <field name="disposal_methods"/>
+                                        <field name="initial_treatment"/>
+                                        <field name="water_sources"/>
+                                        <field name="electric_sources"/>
+                                        <field name="competent_authority_confirm"/>
+                                        <field name="quality_control_laboratory"/>
+                                        <field name="Problems"/>
+                                        <field name="description_Problems"/>  
+                                    </group>
+                                </page>
+                                <page string="البيانات الفنيه">
+                                    <group col="4" colspan="4">
+                                        <field name="workflow"/>
+                                        <field name="discontinuation_date" attrs="{'invisible': [('workflow', 'not in', ['2','3'])]}" />
+                                        <field name="start_production"/>
+                                        <field name="reasons_for_stopping" attrs="{'invisible': [('workflow', 'not in', ['2','3'])]}"/>
+                                        <field name="description_reasons" attrs="{'invisible': [('workflow', 'not in', ['2','3'])]}"/>
+                                        <field name="solutions" attrs="{'invisible': [('workflow', 'not in', ['2','3'])]}"/>
+                                    </group>
+                                </page>
+                                <page string="الماكينات و العمال">
+                                    <group col="4" colspan="4">
+                                        <field name="Machine_origin"/>
+                                        <field name="machinists_cost"/>
+                                        <field name="national_workers"/>
+                                        <field name="foreign_workers"/>
+                                        <field name="fixed_workers"/>
+                                        <field name="temporarily_workers"/>
+                                        <field name="males_workers"/>
+                                        <field name="females_workers"/>
+                                        <field name="shifts_number"/>
+                                        <field name="shifts_time"/>
+                                    </group>
+                                </page>
+                                <page string="المواد الخام">
+                                    <group >
+                                        <field name="raw_material"/>
+                                    </group>
+                                </page>
+                                <page string="المنتجات">
+                                    <group >
+                                        <field name="products"/>
+                                    </group>
+                                </page>
+                                <page string="فريق الزياره">
+                                    <group >
+                                        <field name="team_members"/>
+                                    </group>
+                                </page>
+                            </notebook>
+                        </sheet>
+                    </form>
+                </field>
+            </record>
+
+            <record model="ir.actions.act_window" id="field_visit_action_window">
+                <field name="name">field_visit</field>
+                <field name="res_model">field.visit</field>
+                <field name="view_mode">tree,form,pivot</field>
+            </record>
+
+            <record id="weights_unit_tree" model="ir.ui.view">
+                <field name="name">weights_unit</field>
+                    <field name="model">weights.unit</field>
+                    <field name="arch" type="xml">
+                        <tree create="true" delete="true" edit="true" editable="bottom">
+                            <!-- Add your fields here -->
+                            <field name="name"/>
+                        </tree>
+                    </field>
+                </record>
+
+
+
+
+                <record model="ir.actions.act_window" id="weights_unit_action_window">
+                    <field name="name">weights_unit</field>
+                    <field name="res_model">weights.unit</field>
+                        <field name="view_mode">tree,form</field>
+                    </record>
+
+                    <record id="productive_unit_tree" model="ir.ui.view">
+                        <field name="name">productive_unit</field>
+                            <field name="model">productive.unit</field>
+                            <field name="arch" type="xml">
+                                <tree create="true" delete="true" edit="true" editable="bottom">
+                                    <!-- Add your fields here -->
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                        </record>
+
+                        <!-- field_visit form view -->
+
+
+                        <record model="ir.actions.act_window" id="productive_unit_action_window">
+                            <field name="name">productive_unit</field>
+                            <field name="res_model">productive.unit</field>
+                            <field name="view_mode">tree,form</field>
+                        </record>
+
+                        <record id="product_tree" model="ir.ui.view">
+                            <field name="name">product</field>
+                                <field name="model">product</field>
+                                <field name="arch" type="xml">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="productive_unit"/>
+                                        <field name="weights_unit"/>
+                                        <field name="weight_produced_unit"/>
+                                        <field name="design_energy"/>
+                                        <field name="available_energy"/>
+                                        <field name="productivity_energy"/>
+
+                                    </tree>
+                                </field>
+                            </record>
+
+                            <!-- field_visit form view -->
+                            <record id="product_view_form" model="ir.ui.view">
+                                <field name="name">product</field>
+                                <field name="model">product</field>
+                                <field name="arch" type="xml">
+                                    <form string="">
+                                        <sheet>
+                                            <group col="4" colspan="4">
+                                                <field name="name"/>
+                                                <field name="productive_unit"/>
+                                                <field name="weights_unit"/>
+                                                <field name="weight_produced_unit"/>
+                                                <field name="design_energy"/>
+                                                <field name="available_energy"/>
+                                                <field name="productivity_energy"/>
+                                                <field name="team_note"/>
+
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </record>
+
+                            <record model="ir.actions.act_window" id="product_action_window">
+                                <field name="name">product</field>
+                                <field name="res_model">product</field>
+                                <field name="view_mode">tree,form</field>
+                            </record>
+
+
+                            <record id="raw_material_tree" model="ir.ui.view">
+                                <field name="name">raw_material</field>
+                                <field name="model">raw.material</field>
+                                <field name="arch" type="xml">
+                                    <tree>
+                                        <!-- Add your fields here -->
+                                        <field name="name"/>
+                                        <field name="quantity"/>
+                                        <field name="cost"/>
+                                        <field name="origin"/>
+
+                                    </tree>
+                                </field>
+                            </record>
+
+                            <!-- field_visit form view -->
+                            <record id="raw_material_view_form" model="ir.ui.view">
+                                <field name="name">raw_material</field>
+                                <field name="model">raw.material</field>
+                                <field name="arch" type="xml">
+                                    <form string="">
+                                        <sheet>
+                                            <group col="4" colspan="4">
+                                                <!-- Add your fields here -->
+                                                <field name="name"/>
+                                                <field name="quantity"/>
+                                                <field name="cost"/>
+                                                <field name="origin"/>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </record>
+
+                            <record model="ir.actions.act_window" id="raw_material_action_window">
+                                <field name="name">raw_material</field>
+                                <field name="res_model">raw.material</field>
+                                <field name="view_mode">tree,form</field>
+                            </record>
+                            <menuitem name="field_visit" id="field_visit_menu" parent="investor_services_menu" sequence="3"/>
+                            <menuitem name="setting" id="setting_menu" parent="investor_services_menu" sequence="2"/>
+
+                            <menuitem name="field_visit" id="field_visit_menu_action" parent="services_menu" action="field_visit_action_window" sequence="3" groups="follow-up_and_evaluation_employee"/>
+                            <menuitem name="raw_material" id="raw_material_menu_action" parent="setting_menu" action="raw_material_action_window" groups="follow-up_and_evaluation_employee"/>
+                            <menuitem name="product" id="product_menu_action" parent="setting_menu" action="product_action_window" groups="follow-up_and_evaluation_employee"/>
+                            <menuitem name="productive_unit" id="productive_unit_menu_action" parent="setting_menu" action="productive_unit_action_window" groups="follow-up_and_evaluation_employee"/>
+                            <menuitem name="weights_unit" id="weights_unit_menu_action" parent="setting_menu" action="weights_unit_action_window" groups="follow-up_and_evaluation_employee"/>
+
+
+
+
+                        </data>
+                    </odoo>

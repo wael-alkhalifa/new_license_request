@@ -1,0 +1,1150 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record model="report.paperformat" id="paperformat_attendance_recap_report">
+            <field name="name">paperformat.attendance.recap.report</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="page_width">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">0</field>
+            <field name="margin_right">0</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">0</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">20</field>
+            <field name="dpi">90</field>
+
+
+        </record>
+
+
+        <record id="paperformat_custom" model="report.paperformat">
+            <field name="name">Custom format</field>
+            <field name="default" eval="True" />
+            <field name="format">custom</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">30</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">10</field>
+            <field name="margin_right">10</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">20</field>
+            <field name="dpi">100</field>
+        </record>
+        <report id="print_report_pdf" string="Sample Report" model="decisions.wizard" report_type="qweb-html" name="decisions.print_sample_report" file="decisions.print_sample_report" />
+        <!-- <report id="print_report_pdf" string="Sample Report" model="decisions.wizard" report_type="qweb-html" name="decisions.print_sample_report" file="decisions.print_sample_report" />
+        <report id="print_report_pdf" string="Sample Report" model="decisions.wizard" report_type="qweb-html" name="decisions.print_sample_report" file="decisions.print_sample_report" />
+        <report id="print_report_pdf" string="Sample Report" model="decisions.wizard" report_type="qweb-html" name="decisions.print_sample_report" file="decisions.print_sample_report" />
+        <report id="print_report_pdf" string="Sample Report" model="decisions.wizard" report_type="qweb-html" name="decisions.print_sample_report" file="decisions.print_sample_report" /> -->
+
+
+        <template id="print_sample_report">
+            <t t-call="web.html_container">
+                <t t-set="data_report_margin_top" t-value="12"/>
+                <t t-set="data_report_header_spacing" t-value="9"/>
+                <t t-set="data_report_dpi" t-value="110"/>
+
+                <div class="page" style="width:100%;font-family: 'AmiriQuranRegular', serif !important;">
+                    <link href="/decisions/static/src/css/task_reports_style.css" rel="stylesheet"/>
+                    <center>
+                        <img src="/decisions/static/src/rep_header.jpg" style="width:1300px;height:184px;margin-left:3px;"/>
+                    </center>
+                    <br />
+                    <div style="text-align:right;font-family:Droid Arabic Kufi, serif !important;">
+
+                    </div>
+                    <br />
+
+
+                    <p>
+                        <span>التاريخ</span>
+                        <span> : </span>
+                        <span t-esc="form_data['date_now']" />
+                    </p>
+
+                    <center>
+                        <u>
+                            <h4>
+                                <t t-if="form_data['report_type']=='1'">
+                                    <b style="font-family:Droid Arabic Kufi, serif !important;">تقرير  طلبات القرارات </b>
+
+
+                                </t>
+
+                                <t t-if="form_data['report_type']=='2'">
+                                    <b style="font-family:Droid Arabic Kufi, serif !important;">تقرير  طلبات القرارات حسب  النوع
+                                                                                <t t-if="form_data['request_type']=='1'">
+                                                
+
+                                                    <p> طلب موقع مؤجر</p>
+
+
+                                               
+                                            </t>
+                                            <t t-if="form_data['request_type']=='2'">
+                                                
+
+                                                    <p> طلب كشف  احتياجات</p>
+
+
+                                               
+                                            </t>
+                                            <t t-if="form_data['request_type']=='3'">
+                                             
+
+                                                    <p>  طلب تجديد ترخيص</p>
+
+
+                                            </t>
+                                            <t t-if="form_data['request_type']=='4'">
+                                                
+
+                                                    <p>  طلب مميزات نمطية</p>
+
+
+                                               
+                                            </t>
+                                            <t t-if="form_data['request_type']=='5'">
+                                               
+
+                                                    <p> طلب جملون</p>
+
+
+                                                
+                                            </t>
+                                            <t t-if="form_data['request_type']=='6'">
+                                               
+
+                                                    <p> طلب توصية وسائل نقل</p>
+
+
+                                              
+                                            </t>
+                                            <t t-if="form_data['request_type']=='7'">
+                                               
+
+                                                    <p> طلب استثناء موديل</p>
+
+
+                                                
+                                            </t>
+                                             <t t-if="form_data['request_type']=='8'">
+                                               
+
+                                                    <p>  طلب استنأف</p>
+
+
+                                               
+                                            </t>
+                                            <t t-if="form_data['request_type']=='9'">
+                                                
+
+                                                    <p> طلب تعديل قرار</p>
+
+
+                                            </t>
+                                            <t t-if="form_data['request_type']=='10'">
+                                               
+
+                                                    <p> طلب تجديد قرار</p>
+
+
+                                                
+                                            </t>
+                                            <t t-if="form_data['request_type']=='11'">
+                                                
+
+                                                    <p> طلب تغيير نشاط</p>
+
+
+                                                
+                                            </t>
+                                            <t t-if="form_data['request_type']=='12'">
+                                               
+
+                                                    <p> طلب تصرف</p>
+
+
+                                              
+                                            </t>
+                                            <t t-if="form_data['request_type']=='13'">
+                                                
+
+                                                    <p> طلب رهن</p>
+
+
+                                               
+                                            </t>
+                                           
+                                            <t t-if="form_data['request_type']=='14'">
+                                                
+
+                                                    <p> طلب ادخال شريك</p>
+
+
+                                            </t>   
+                                            <t t-if="form_data['request_type']=='15'">
+                                               
+
+                                                    <p> طلب فض شراكة</p>
+
+
+                                                
+                                            </t>
+                                            <t t-if="form_data['request_type']=='16'">
+                                                
+
+                                                    <p> طلب تغيير اسم العمل</p>
+
+
+                                              
+                                            </t>
+                                            <t t-if="form_data['request_type']=='17'">
+                                                
+
+                                                    <p> طلب تحويل ملكية</p>
+
+
+                                              
+                                            </t>
+                                            <t t-if="form_data['request_type']=='18'">
+                                               
+
+                                                    <p> طلب اعادة صادر</p>
+
+
+                                                
+                                            </t>
+                                            <t t-if="form_data['request_type']=='19'">
+                                               
+
+                                                    <p> طلب الغاء ترخيص</p>
+
+
+                                               
+                                            </t>
+                                            <p />
+                                    </b>
+
+
+                                </t>
+
+                                <t t-if="form_data['report_type']=='3'">
+                                    <b style="font-family:Droid Arabic Kufi, serif !important;">تقرير  طلبات القرارات حسب  المشروع                                        <span t-esc="form_data['project'][1]" />
+                                    </b>
+
+
+                                </t>
+
+                                <t t-if="form_data['report_type']=='4'">
+                                    <b style="font-family:Droid Arabic Kufi, serif !important;">تقرير  طلبات القرارات حسب  القطاع                                        <span t-esc="form_data['section'][1]" />
+                                    </b>
+
+
+                                </t>
+
+                                <t t-if="form_data['report_type']=='5'">
+                                    <b style="font-family:Droid Arabic Kufi, serif !important;">تقرير  طلبات القرارات حسب  مقدم الطلب                                        <span t-esc="form_data['name']" />
+                                    </b>
+
+
+                                </t>
+
+
+
+                            </h4>
+                        </u>
+                    </center>
+
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <center>
+                        <table class="table" style="text-align:center;direction:rtl">
+                            <thead>
+                                <tr>
+
+                                    <t t-if="form_data['report_type']=='1'">
+                                        <center>
+                                            <th style="text-align:right;background-color:#d9dadc !important;">رقم الطلب </th>
+                                        </center>
+                                        <center>
+                                            <th style="text-align:right;background-color:#d9dadc !important;">المشروع </th>
+                                        </center>
+                                        <center>
+                                            <th style="text-align:right;background-color:#d9dadc !important;">القطاع</th>
+                                        </center>
+                                        <center>
+                                            <th style="text-align:right;background-color:#d9dadc !important;">نوع الطلب </th>
+                                        </center>
+                                        <center>
+                                            <th style="text-align:right;background-color:#d9dadc !important;">تاريخ الطلب</th>
+                                        </center>
+                                        <center>
+                                            <th style="text-align:right;background-color:#d9dadc !important;">مقدم الطلب</th>
+                                        </center>
+
+                                    </t>
+                                    <t t-if="form_data['report_type']=='2'">
+                                        <center>
+                                            <th style="text-align:right;background-color:#d9dadc !important;">رقم الطلب </th>
+                                        </center>
+                                        <center>
+                                            <th style="text-align:right;background-color:#d9dadc !important;">المشروع </th>
+                                        </center>
+                                        <center>
+                                            <th style="text-align:right;background-color:#d9dadc !important;">القطاع</th>
+                                        </center>
+                                        <center>
+                                            <th style="text-align:right;background-color:#d9dadc !important;">تاريخ الطلب</th>
+                                        </center>
+                                        <center>
+                                            <th style="text-align:right;background-color:#d9dadc !important;">مقدم الطلب</th>
+                                        </center>
+
+                                    </t>
+
+                                    <t t-if="form_data['report_type']=='3'">
+                                        <center>
+                                            <th style="text-align:right;background-color:#d9dadc !important;">رقم الطلب </th>
+                                        </center>
+                                        <center>
+                                            <th style="text-align:right;background-color:#d9dadc !important;">القطاع</th>
+                                        </center>
+                                        <center>
+                                            <th style="text-align:right;background-color:#d9dadc !important;">نوع الطلب </th>
+                                        </center>
+                                        <center>
+                                            <th style="text-align:right;background-color:#d9dadc !important;">تاريخ الطلب</th>
+                                        </center>
+                                        <center>
+                                            <th style="text-align:right;background-color:#d9dadc !important;">مقدم الطلب</th>
+                                        </center>
+                                    </t>
+
+
+                                    <t t-if="form_data['report_type']=='4'">
+                                        <center>
+                                            <th style="text-align:right;background-color:#d9dadc !important;">رقم الطلب </th>
+                                        </center>
+                                        <center>
+                                            <th style="text-align:right;background-color:#d9dadc !important;">المشروع </th>
+                                        </center>
+                                        <center>
+                                            <th style="text-align:right;background-color:#d9dadc !important;">نوع الطلب </th>
+                                        </center>
+                                        <center>
+                                            <th style="text-align:right;background-color:#d9dadc !important;">تاريخ الطلب</th>
+                                        </center>
+                                        <center>
+                                            <th style="text-align:right;background-color:#d9dadc !important;">مقدم الطلب</th>
+                                        </center>
+
+                                    </t>
+
+
+
+
+                                    <t t-if="form_data['report_type']=='5'">
+                                        <center>
+                                            <th style="text-align:right;background-color:#d9dadc !important;">رقم الطلب </th>
+                                        </center>
+                                        <center>
+                                            <th style="text-align:right;background-color:#d9dadc !important;">المشروع </th>
+                                        </center>
+                                        <center>
+                                            <th style="text-align:right;background-color:#d9dadc !important;">القطاع</th>
+                                        </center>
+                                        <center>
+                                            <th style="text-align:right;background-color:#d9dadc !important;">نوع الطلب </th>
+                                        </center>
+                                        <center>
+                                            <th style="text-align:right;background-color:#d9dadc !important;">تاريخ الطلب</th>
+                                        </center>
+
+                                    </t>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="docs" t-as="i">
+                                    <tr style="direction:center">
+
+                                        <t t-if="form_data['report_type']=='1'">
+                                            <td>
+                                                <span t-esc="i['order_number']"/>
+                                            </td>
+                                            <p />
+                                            <td>
+                                                <span t-esc="i['project']"/>
+                                            </td>
+                                            <p />
+                                            <td>
+                                                <span t-esc="i['section']"/>
+                                            </td>
+                                            <p />
+
+                                            <t t-if="i['request_type']=='1'">
+                                                <td>
+
+                                                    <p> طلب موقع مؤجر</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='2'">
+                                                <td>
+
+                                                    <p> طلب كشف  احتياجات</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='3'">
+                                                <td>
+
+                                                    <p>  طلب تجديد ترخيص</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='4'">
+                                                <td>
+
+                                                    <p>  طلب مميزات نمطية</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='5'">
+                                                <td>
+
+                                                    <p> طلب جملون</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='6'">
+                                                <td>
+
+                                                    <p> طلب توصية وسائل نقل</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='7'">
+                                                <td>
+
+                                                    <p> طلب استثناء موديل</p>
+
+
+                                                </td>
+                                            </t>
+                                               <t t-if="i['request_type']=='8'">
+                                                <td>
+
+                                                    <p> طلب استنأف</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='9'">
+                                                <td>
+
+                                                    <p> طلب تعديل قرار</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='10'">
+                                                <td>
+
+                                                    <p> طلب تجديد قرار</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='11'">
+                                                <td>
+
+                                                    <p> طلب تغيير نشاط</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='12'">
+                                                <td>
+
+                                                    <p> طلب تصرف</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='13'">
+                                                <td>
+
+                                                    <p> طلب رهن</p>
+
+
+                                                </td>
+                                            </t>
+                                         
+                                            <t t-if="i['request_type']=='14'">
+                                                <td>
+
+                                                    <p> طلب ادخال شريك</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='15'">
+                                                <td>
+
+                                                    <p> طلب فض شراكة</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='16'">
+                                                <td>
+
+                                                    <p> طلب تغيير اسم العمل</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='17'">
+                                                <td>
+
+                                                    <p> طلب تحويل ملكية</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='18'">
+                                                <td>
+
+                                                    <p> طلب اعادة صادر</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='19'">
+                                                <td>
+
+                                                    <p> طلب الغاء ترخيص</p>
+
+
+                                                </td>
+                                            </t>
+                                            <p />
+
+
+                                            <td>
+                                                <span t-esc="i['order_date']"/>
+                                            </td>
+                                            <p />
+                                            <td>
+                                                <span t-esc="i['name']"/>
+                                            </td>
+                                            <p />
+                                        </t>
+                                        <t t-if="form_data['report_type']=='2'">
+                                            <td>
+                                                <span t-esc="i['order_number']"/>
+                                            </td>
+                                            <p />
+                                            <td>
+                                                <span t-esc="i['project']"/>
+                                            </td>
+                                            <p />
+                                            <td>
+                                                <span t-esc="i['section']"/>
+                                            </td>
+                                            <p />
+
+
+
+                                            <td>
+                                                <span t-esc="i['order_date']"/>
+                                            </td>
+                                            <p />
+                                            <td>
+                                                <span t-esc="i['name']"/>
+                                            </td>
+                                            <p />
+                                        </t>
+
+                                        <t t-if="form_data['report_type']=='3'">
+                                            <td>
+                                                <span t-esc="i['order_number']"/>
+                                            </td>
+                                            <p />
+
+                                            <td>
+                                                <span t-esc="i['section']"/>
+                                            </td>
+                                            <p />
+                                             <t t-if="i['request_type']=='1'">
+                                                <td>
+
+                                                    <p> طلب موقع مؤجر</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='2'">
+                                                <td>
+
+                                                    <p> طلب كشف  احتياجات</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='3'">
+                                                <td>
+
+                                                    <p>  طلب تجديد ترخيص</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='4'">
+                                                <td>
+
+                                                    <p>  طلب مميزات نمطية</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='5'">
+                                                <td>
+
+                                                    <p> طلب جملون</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='6'">
+                                                <td>
+
+                                                    <p> طلب توصية وسائل نقل</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='7'">
+                                                <td>
+
+                                                    <p> طلب استثناء موديل</p>
+
+
+                                                </td>
+                                            </t>
+                                               <t t-if="i['request_type']=='8'">
+                                                <td>
+
+                                                    <p> طلب استنأف</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='9'">
+                                                <td>
+
+                                                    <p> طلب تعديل قرار</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='10'">
+                                                <td>
+
+                                                    <p> طلب تجديد قرار</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='11'">
+                                                <td>
+
+                                                    <p> طلب تغيير نشاط</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='12'">
+                                                <td>
+
+                                                    <p> طلب تصرف</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='13'">
+                                                <td>
+
+                                                    <p> طلب رهن</p>
+
+
+                                                </td>
+                                            </t>
+                                         
+                                            <t t-if="i['request_type']=='14'">
+                                                <td>
+
+                                                    <p> طلب ادخال شريك</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='15'">
+                                                <td>
+
+                                                    <p> طلب فض شراكة</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='16'">
+                                                <td>
+
+                                                    <p> طلب تغيير اسم العمل</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='17'">
+                                                <td>
+
+                                                    <p> طلب تحويل ملكية</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='18'">
+                                                <td>
+
+                                                    <p> طلب اعادة صادر</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='19'">
+                                                <td>
+
+                                                    <p> طلب الغاء ترخيص</p>
+
+
+                                                </td>
+                                            </t>
+                                            <p />
+
+
+                                            <td>
+                                                <span t-esc="i['order_date']"/>
+                                            </td>
+                                            <p />
+                                            <td>
+                                                <span t-esc="i['name']"/>
+                                            </td>
+                                            <p />
+                                        </t>
+
+                                        <t t-if="form_data['report_type']=='4'">
+                                            <td>
+                                                <span t-esc="i['order_number']"/>
+                                            </td>
+                                            <p />
+                                            <td>
+                                                <span t-esc="i['project']"/>
+                                            </td>
+                                            <p />
+
+                                            <t t-if="i['request_type']=='1'">
+                                                <td>
+
+                                                    <p> طلب موقع مؤجر</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='2'">
+                                                <td>
+
+                                                    <p> طلب كشف  احتياجات</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='3'">
+                                                <td>
+
+                                                    <p>  طلب تجديد ترخيص</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='4'">
+                                                <td>
+
+                                                    <p>  طلب مميزات نمطية</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='5'">
+                                                <td>
+
+                                                    <p> طلب جملون</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='6'">
+                                                <td>
+
+                                                    <p> طلب توصية وسائل نقل</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='7'">
+                                                <td>
+
+                                                    <p> طلب استثناء موديل</p>
+
+
+                                                </td>
+                                            </t>
+                                               <t t-if="i['request_type']=='8'">
+                                                <td>
+
+                                                    <p> طلب استنأف</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='9'">
+                                                <td>
+
+                                                    <p> طلب تعديل قرار</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='10'">
+                                                <td>
+
+                                                    <p> طلب تجديد قرار</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='11'">
+                                                <td>
+
+                                                    <p> طلب تغيير نشاط</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='12'">
+                                                <td>
+
+                                                    <p> طلب تصرف</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='13'">
+                                                <td>
+
+                                                    <p> طلب رهن</p>
+
+
+                                                </td>
+                                            </t>
+                                         
+                                            <t t-if="i['request_type']=='14'">
+                                                <td>
+
+                                                    <p> طلب ادخال شريك</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='15'">
+                                                <td>
+
+                                                    <p> طلب فض شراكة</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='16'">
+                                                <td>
+
+                                                    <p> طلب تغيير اسم العمل</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='17'">
+                                                <td>
+
+                                                    <p> طلب تحويل ملكية</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='18'">
+                                                <td>
+
+                                                    <p> طلب اعادة صادر</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='19'">
+                                                <td>
+
+                                                    <p> طلب الغاء ترخيص</p>
+
+
+                                                </td>
+                                            </t>
+                                            <p />
+
+
+                                            <td>
+                                                <span t-esc="i['order_date']"/>
+                                            </td>
+                                            <p />
+                                            <td>
+                                                <span t-esc="i['name']"/>
+                                            </td>
+                                            <p />
+                                        </t>
+
+                                        <t t-if="form_data['report_type']=='5'">
+                                            <td>
+                                                <span t-esc="i['order_number']"/>
+                                            </td>
+                                            <p />
+                                            <td>
+                                                <span t-esc="i['project']"/>
+                                            </td>
+                                            <p />
+                                            <td>
+                                                <span t-esc="i['section']"/>
+                                            </td>
+                                            <p />
+                                            <t t-if="i['request_type']=='1'">
+                                                <td>
+
+                                                    <p> طلب موقع مؤجر</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='2'">
+                                                <td>
+
+                                                    <p> طلب كشف  احتياجات</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='3'">
+                                                <td>
+
+                                                    <p>  طلب تجديد ترخيص</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='4'">
+                                                <td>
+
+                                                    <p>  طلب مميزات نمطية</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='5'">
+                                                <td>
+
+                                                    <p> طلب جملون</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='6'">
+                                                <td>
+
+                                                    <p> طلب توصية وسائل نقل</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='7'">
+                                                <td>
+
+                                                    <p> طلب استثناء موديل</p>
+
+
+                                                </td>
+                                            </t>
+                                               <t t-if="i['request_type']=='8'">
+                                                <td>
+
+                                                    <p> طلب استنأف</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='9'">
+                                                <td>
+
+                                                    <p> طلب تعديل قرار</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='10'">
+                                                <td>
+
+                                                    <p> طلب تجديد قرار</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='11'">
+                                                <td>
+
+                                                    <p> طلب تغيير نشاط</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='12'">
+                                                <td>
+
+                                                    <p> طلب تصرف</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='13'">
+                                                <td>
+
+                                                    <p> طلب رهن</p>
+
+
+                                                </td>
+                                            </t>
+                                         
+                                            <t t-if="i['request_type']=='14'">
+                                                <td>
+
+                                                    <p> طلب ادخال شريك</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='15'">
+                                                <td>
+
+                                                    <p> طلب فض شراكة</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='16'">
+                                                <td>
+
+                                                    <p> طلب تغيير اسم العمل</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='17'">
+                                                <td>
+
+                                                    <p> طلب تحويل ملكية</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='18'">
+                                                <td>
+
+                                                    <p> طلب اعادة صادر</p>
+
+
+                                                </td>
+                                            </t>
+                                            <t t-if="i['request_type']=='19'">
+                                                <td>
+
+                                                    <p> طلب الغاء ترخيص</p>
+
+
+                                                </td>
+                                            </t>
+                                            <p />
+
+                                            <td>
+                                                <span t-esc="i['order_date']"/>
+                                            </td>
+                                            <p />
+
+                                        </t>
+
+
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </center>
+                </div>
+                <div class="footer" style="border-top: 3px solid black !important;">
+                    <br />
+                    <div style="display: inline;font-family:Droid Arabic Kufi, serif !important;float: right;">
+                        <span>   الجهاز القومي للاستثمار</span>
+
+                        <span>__________________________________________________________________________________________________________________________________________</span>
+                        <span> الإدارة العامة للمعلومات</span>
+                        <![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]>
+
+                    </div>
+                    <!-- <ul class="list-inline" style="display: inline;text-align: center;font-family:Droid Arabic Kufi, serif !important;">
+                        <li>صفحة</li>
+                        <li>
+                            <span class="page" />
+                        </li>
+                        <li>من</li>
+                        <li>
+                            <span class="topage" />
+                        </li>
+                    </ul> -->
+
+
+
+
+                </div>
+
+            </t>
+        </template>
+
+    </data>
+
+
+</odoo>

@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <record id="paperformat_custom" model="report.paperformat">
+      <field name="name">Custom format</field>
+      <field name="default" eval="True" />
+      <field name="format">custom</field>
+      <field name="page_height">0</field>
+      <field name="page_width">0</field>
+      <field name="orientation">Portrait</field>
+      <field name="margin_top">30</field>
+      <field name="margin_bottom">0</field>
+      <field name="margin_left">10</field>
+      <field name="margin_right">10</field>
+      <field name="header_line" eval="False" />
+      <field name="header_spacing">20</field>
+      <field name="dpi">100</field>
+    </record>
+    <record id="increment_new_license_sequence" model="ir.sequence">
+      <field name="name">Field Incrementation</field>
+      <field name="code">increment_new_license</field>
+      <field name="prefix"></field>
+      <field name="padding">3</field>
+      <field name="company_id" eval="False"/>
+    </record>
+    <report id="print_payment_doc" string="payment" model="nia.new_license" report_type="qweb-pdf" name="new_license_request.print_payment" file="new_license_request.print_payment" paperformat="paperformat_custom"/>
+    <report id="print_new_license" string="new license" model="nia.new_license" report_type="qweb-pdf" name="new_license_request.print_new_license_doc" file="new_license_request.print_new_license_doc" />
+
+    <template id="print_payment">
+    <t t-call="web.external_layout">
+      <t t-call="web.html_container">
+
+
+        <div class="page" style="width:100%;font-family: 'AmiriQuranRegular', serif !important;">
+          <center>
+            <img src="/new_license_request/static/src/img/rep_header.png" style="width:1300px;height:184px;margin-left:3px;"/>
+          </center>
+          <br />
+
+          <br />
+
+          <t t-foreach="docs" t-as="i">
+            <table class="table" style="text-align:center;direction:rtl">
+              <thead>
+                <tr style="direction:center">
+
+                  
+                    <center>
+                      <th style="text-align:center;background-color:#d9dadc !important;">التاريخ</th>
+                    </center>
+                    <center>
+                      <th style="text-align:center;background-color:#d9dadc !important;">المشروع </th>
+                    </center>
+                    <center>
+                      <th style="text-align:center;background-color:#d9dadc !important;">المبلغ</th>
+                    </center>
+                    <center>
+                      <th style="text-align:center;background-color:#d9dadc !important;">عبارة عن</th>
+                    </center>
+                    <center>
+                      <th style="text-align:center;background-color:#d9dadc !important;"> الموظف</th>
+                    </center>
+                    <center>
+                      <th style="text-align:center;background-color:#d9dadc !important;">التوقيع</th>
+                    </center>
+
+                 
+
+
+
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr >
+
+
+                  <td>
+                    <span t-esc="i['date_now']"/>
+                  </td>
+                  <p />
+                  <td>
+                    <span t-esc="i['project']"/>
+                  </td>
+                  <p />
+                  <td>
+                    <span t-field="i.fees.amount"/>
+                  </td>
+                  <p />
+                  <td>
+                    <span t-field="i.fees.name"/>
+                  </td>
+                  <p />
+                  <td>
+                    <span t-field="i.write_uid.name"/>
+                  </td>
+                  <p />
+                  <td>
+
+                  </td>
+                  <p />
+                </tr>
+
+              </tbody>
+            </table>
+
+            <table class="table" style="text-align:center;direction:rtl">
+              <thead>
+                <tr style="direction:center">
+
+                 
+                    <center>
+                      <th style="text-align:center;background-color:#d9dadc !important;">التاريخ</th>
+                    </center>
+
+                    <center>
+                      <th style="text-align:center;background-color:#d9dadc !important;"> المبلغ المستلم</th>
+                    </center>
+                    <center>
+                      <th style="text-align:center;background-color:#d9dadc !important;">رقم  الايصال</th>
+                    </center>
+                    <center>
+                      <th style="text-align:center;background-color:#d9dadc !important;"> مدير الشئون المالية</th>
+                    </center>
+                    <center>
+                      <th style="text-align:center;background-color:#d9dadc !important;">التوقيع</th>
+                    </center>
+
+                 
+
+
+
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr >
+
+
+                  <td>
+                    <span t-esc="i['date_now']"/>
+                  </td>
+                  <p />
+
+                  <td>
+                    <span t-field="i.fees.amount"/>
+                  </td>
+                  <p />
+                  <td>
+
+                  </td>
+                  <p />
+                  <td>
+
+                  </td>
+                  <p />
+                  <td>
+
+                  </td>
+                  <p />
+                </tr>
+
+              </tbody>
+            </table>
+
+
+
+
+
+            <br />
+            <div class="container" style="text-align:right;font-family:Droid Arabic Kufi, serif !important;">
+
+
+
+              <p class="row"> تم بواسطة الشئون المالية</p>
+
+
+            </div>
+          </t>
+        </div>
+
+
+       </t>
+      </t>
+    </template>
+
+    <template id="print_new_license_doc">
+    <t t-call="web.external_layout">
+      <t t-call="web.html_container">
+        <t t-set="data_report_margin_top" t-value="12"/>
+        <t t-set="data_report_header_spacing" t-value="9"/>
+        <t t-set="data_report_dpi" t-value="110"/>
+
+        <div class="page" style="width:100%;font-family: 'AmiriQuranRegular', serif !important;">
+          <link href="/new_license_request/static/src/css/task_reports_style.css" rel="stylesheet"/>
+
+           <center>
+           <img t-att-src="'/new_license_request/static/src/img/rep_header.png'" style="width:1300px;height:184px;margin-left:3px;"/>
+                   
+	  </center> 
+
+
+          <center>
+            <u>
+              <h4>
+                <t t-foreach="docs" t-as="i">
+
+                  <b style="font-family:Droid Arabic Kufi, serif !important; font-size: 22px;">  ترخيص رقم                    <span t-esc="i['license_number']"/>
+                  </b>
+                </t>
+              </h4>
+            </u>
+          </center>
+
+          <!-- <div style="text-align:right;direction: rtl;font-family:Droid Arabic Kufi, serif !important;font-size: 18px;">  -->
+          <t t-foreach="docs" t-as="i">
+            <div style="text-align:right;direction: rtl;font-family:Droid Arabic Kufi, serif !important;font-size: 18px;">
+              <p>بعد الاطلاع على احكام المواد (21/1/أ/2)(24)(25)من قانون تشجيع الاستثمار القومي لسنة 2013 والمرسوم الدستوري
+              رقم (28) لسنة 2019 الصادر من المجلس العسكري الانتقالي بتاريخ 26/6/2019 وخطاب السيد وزير المالية والتخطيط
+              الاقتصادي بتاريخ 2019/11/17 وعملا بالسلطات المخولة لي بموجب احكام المادة (14/و/ز/ح) قررت منح المنشأة التالية:</p>
+              <p>
+                <B>اسم العمل:                  <span t-esc="i['business_name']"/>
+                </B>
+              </p>
+              <p>
+                <B>رقم اسم العمل :                  <span t-esc="i['business_name_number']"/>
+                </B>
+              </p>
+              <p>
+                <B>ترخيص لاقامة :                  <span t-esc="i['activity_description']"/>
+                </B>
+              </p>
+              <p>
+                <B> بجهة :                  <span t-field="i.company_id.name"/>
+                </B>
+              </p>
+              <p>المميزات الاتية:</p>
+              <p>
+                <span t-field="i.features"/>
+              </p>
+              <p> شريطة:</p>
+              <p>
+                <span t-field="i.terms"/>
+              </p>
+
+              <t t-if="i.note">
+                <p>ملحوظة : </p>
+                <p>
+                  <span t-field="i.note"/>
+                </p>
+              </t>
+
+              <p>وذلك بالشروط الملزمة والموضحة </p>
+
+              <p>صدر تحت توقيعي في يوم                <span t-esc="i['date_now']"/>
+              </p>
+
+              <br />
+              <p>
+                <span t-field="i.general_secretary.name"/>
+              </p>
+              <p>الامين العام</p>
+              <br />
+              <br />
+              <br />
+              <br />
+              <p style="text-align:right;">صورة الى : </p>
+              <p style="text-align:right;">
+                <span t-field="i.cc"/>
+              </p>
+            </div>
+
+            <div style="text-align:left;direction: ltr;font-family:Droid Arabic Kufi, serif !important;font-size: 18px;">
+              <img t-att-src="image_data_uri(i.qr_image)" alt="Logo" style="width:200px;height:200px;"/>
+
+
+            </div>
+          </t>
+
+
+
+
+        </div>
+
+      </t>
+       </t>
+    </template>
+    <!-- model.name inherit form view -->
+   <record id="res_user_inherit_view_id" model="ir.ui.view">
+      <field name="name">res.users.inherit.view.form</field>
+      <field name="model">res.users</field>
+      <field name="inherit_id" ref="base.view_users_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='login']" position="after">
+         <field name="section" placeholder="section"/> 
+        </xpath>
+        
+      </field>
+    </record> 
+    <record id="nia_nationality_view_tree" model="ir.ui.view">
+      <field name="name">nationality</field>
+      <field name="model">nia.nationality</field>
+      <field name="arch" type="xml">
+        <tree create="true" delete="true" edit="true" editable="bottom">
+          <!-- Add your fields here -->
+
+          <field name="name"/>
+
+        </tree>
+      </field>
+    </record>
+    <record id="fees_view_tree" model="ir.ui.view">
+      <field name="name">fees</field>
+      <field name="model">nia.fees</field>
+      <field name="arch" type="xml">
+        <tree create="true" delete="true" edit="true" editable="bottom">
+          <!-- Add your fields here -->
+          <field name="name"/>
+          <field name="amount"/>
+
+        </tree>
+      </field>
+    </record>
+    <record id="child_activity_view_tree" model="ir.ui.view">
+      <field name="name">child activity</field>
+      <field name="model">child.activity</field>
+      <field name="arch" type="xml">
+        <tree create="true" delete="true" edit="true" editable="bottom">
+          <!-- Add your fields here -->
+          <field name="parnet_activity"/>
+          <field name="name"/>
+
+        </tree>
+      </field>
+    </record>
+    <record id="parnet_activity_view_tree" model="ir.ui.view">
+      <field name="name">parnet activity</field>
+      <field name="model">parnet.activity</field>
+      <field name="arch" type="xml">
+        <tree create="true" delete="true" edit="true" editable="bottom">
+          <!-- Add your fields here -->
+
+          <field name="name"/>
+
+        </tree>
+      </field>
+    </record>
+    <record id="nia_section_view_tree" model="ir.ui.view">
+      <field name="name">sections</field>
+      <field name="model">nia.section</field>
+      <field name="arch" type="xml">
+        <tree create="true" delete="true" edit="true" editable="bottom">
+          <!-- Add your fields here -->
+
+          <field name="name"/>
+          <field name="seq"/>
+
+        </tree>
+      </field>
+    </record>
+    <!-- model.name tree view -->
+    <record id="nia_new_license_view_tree" model="ir.ui.view">
+      <field name="name">new license</field>
+      <field name="model">nia.new_license</field>
+      <field name="arch" type="xml">
+        <tree >
+          <!-- Add your fields here -->
+
+          <field name="project"/>
+          <field name="name"/>
+          <field name="state"/>
+
+        </tree>
+      </field>
+    </record>
+    <!-- nia.new_license form view -->
+    <record id="nia_new_license_view_form" model="ir.ui.view">
+      <field name="name">new license</field>
+      <field name="model">nia.new_license</field>
+      <field name="arch" type="xml">
+        <form string="">
+
+          <header>
+
+            <field name="state" widget="statusbar" statusbar_visible="1" class="oe_highlight" />
+            <button name="data_confirm" string="data confirm" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', '1')]}" groups="new_license_request.new_license_user" />
+            <button name="pay1" string="pay" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', '2')]}" groups="new_license_request.new_license_user"/>
+            <button name="print_payment" string="print payment" class="oe_highlight" type="object" attrs="{'invisible': [('state', 'not in', ['2','4','6'])]}" groups="new_license_request.new_license_user" />
+
+            <button name="technical_authority_confirm" string="technical_authority_confirm" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', '3')]}" groups="new_license_request.new_license_technical_authority" />
+            <button name="technical_authority_reject" string="technical_authority_reject" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', '3')]}" groups="new_license_request.new_license_technical_authority"/>
+            <button name="pay2" string="pay" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', '4')]}" groups="new_license_request.new_license_user"/>
+            <button name="Business_Names_Registrar" string="Business Name" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', '5')]}" groups="new_license_request.business_names_registrar" />
+            <button name="pay3" string="pay" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', '6')]}" groups="new_license_request.new_license_user" />
+            <button name="section_confirm" string="section confirm" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', '7')]}" groups="new_license_request.section"/>
+            <button name="section_manager_confirm" string="section manager confirm" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', '8')]}" groups="new_license_request.section_manager"/>
+            <button name="section_manager_reject" string="section  manager reject" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', '8')]}" groups="new_license_request.section_manager"/>
+            <button name="general_manager_confirm" string="general manager confirm" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', '9')]}" groups="new_license_request.general_manager"/>
+            <button name="general_manager_reject" string="general  manager reject" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', '9')]}" groups="new_license_request.general_manager"/>
+            <button name="general_secretary_confirm" string="general secretary confirm" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', '10')]}" groups="new_license_request.general_secretary"/>
+            <button name="print_license" string="print license" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', '10')]}" groups="new_license_request.general_secretary" />
+
+            <button name="general_secretary_reject" string="general secretary reject" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', '10')]}" groups="new_license_request.general_secretary"/>
+            <button name="delivery" string="Delivery" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', '11')]}" groups="new_license_request.counter"/>
+            <button name="create_profile" string="create profile" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', '12')]}" groups="new_license_request.profile"/>
+
+          </header>
+          <sheet>
+            <group>
+              <field name="qr_image" widget="image" width="100" height="100"/>
+            </group>
+            <group>
+              <field name="company_id"/>
+            </group>
+            <group col="4" colspan="4">
+              <field name="project"/>
+              <field name="business_name"/>
+              <field name="business_name_number"/>
+              <field name="order_number"/>
+              <field name="name"/>
+              <field name="representative"/>
+              <field name="Legal_form"/>
+              <field name="address"/>
+              <field name="phone"/>
+              <field name="mobile"/>
+              <field name="email"/>
+              <field name="id_type"/>
+              <field name="id_number"/>
+              <field name="issuance_date"/>
+              <field name="license_number"/>
+              <field name="fees" attrs="{'invisible': [('state', 'not in', ['2','4','6'])]}"/>
+              <field name="business_name" attrs="{'invisible': [('state', '!=', '5')]}"/>
+              <field name="business_name_number" attrs="{'invisible': [('state', '!=', '5')]}"/>
+
+            </group>
+            <notebook>
+              <page string="requirments">
+
+                <group>
+                  <field name="attachments">
+
+                    <tree create="true" delete="true" edit="true" editable="bottom">
+                      <field name="name"/>
+                      <field name="attachment"/>
+                    </tree>
+                  </field>
+
+                </group>
+              </page>
+
+              <page string="project data">
+                <group col="4" colspan="4">
+                  <field name="company_name"/>
+                  <field name="section"/>
+                  <field name="parnet_activites"/>
+                  <field name="child_activites"/>
+                  <field name="activity_description"/>
+                  <field name="proposed_site"/>
+                  <field name="space_required"/>
+                  <field name="project_capital"/>
+                  <field name="capital_payback_period"/>
+                  <field name="main_products"/>
+                  <field name="child_products"/>
+                  <field name="foreign_participation"/>
+                  <field name="employment_count"/>
+                  <field name="local_employment"/>
+                  <field name="foreign_employment"/>
+                </group>
+              </page>
+              <page string="owners data">
+                <group>
+                  <field name="owners" nolabel="1">
+                    <tree create="true" delete="true" edit="true" editable="bottom">
+                      <field name="name"/>
+                      <field name="nationality"/>
+                      <field name="representative"/>
+                      <field name="contribution_ratio"/>
+                      <field name="shares_number"/>
+                      <field name="amount"/>
+                      
+                      <field name="phone"/>
+                      <field name="mobile"/>
+                      <field name="email"/>
+                      <field name="id_type"/>
+                      <field name="id_number"/>
+
+                    </tree>
+                  </field>
+                </group>
+              </page>
+              <page string="note">
+                <group>
+                  <field name="technical_authority_comment" />
+                  <field name="section_comment" />
+                  <field name="section_manager_comment" />
+                  <field name="general_manager_comment" />
+                  <field name="general_secretary_comment"/>
+
+                </group>
+              </page>
+              <page string="features and terms">
+                <group>
+                  <field name="features"/>
+                  <field name="terms"/>
+                  <field name="note"/>
+                  <field name="cc"/>
+                  <field name="general_secretary"/>
+                </group>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <record model="ir.actions.act_window" id="fees_action_window">
+      <field name="name">fees</field>
+      <field name="res_model">nia.fees</field>
+      <field name="view_mode">tree</field>
+    </record>
+    <record model="ir.actions.act_window" id="sections_action_window">
+      <field name="name">sections</field>
+      <field name="res_model">nia.section</field>
+      <field name="view_mode">tree</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="parnet_activity_action_window">
+      <field name="name">parnet activity</field>
+      <field name="res_model">parnet.activity</field>
+      <field name="view_mode">tree</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="child_activity_action_window">
+      <field name="name">child activity</field>
+      <field name="res_model">child.activity</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="nationality_action_window">
+      <field name="name">nationality</field>
+      <field name="res_model">nia.nationality</field>
+      <field name="view_mode">tree</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="new_license_action_window">
+      <field name="name">new license</field>
+      <field name="res_model">nia.new_license</field>
+      <field name="view_mode">tree,form,pivot</field>
+    </record>
+
+
+    <menuitem name="new license" id="services_menu" groups="new_license_request.new_license_user,new_license_request.new_license_technical_authority,new_license_request.business_names_registrar,new_license_request.section,new_license_request.section_manager,new_license_request.general_manager,new_license_request.general_secretary,new_license_request.counter,new_license_request.profile" />
+    <menuitem name="setting" id="setting_menu" parent="services_menu" groups="new_license_request.new_license_user"/>
+    <menuitem name="new license" id="new_license_menu" parent="services_menu" action="new_license_action_window" sequence="1"/>
+    <menuitem name="sections" id="sections_menu" parent="setting_menu" action="sections_action_window" />
+    <menuitem name="parnet activity" id="parnet_activity_menu" parent="setting_menu" action="parnet_activity_action_window" />
+    <menuitem name="child activity" id="child_activity_menu" parent="setting_menu" action="child_activity_action_window" />
+    <menuitem name="nationality" id="nationality_menu" parent="setting_menu" action="nationality_action_window" />
+    <menuitem name="الرسوم" id="fees_menu" parent="setting_menu" action="fees_action_window" />
+
+
+  </data>
+</odoo>

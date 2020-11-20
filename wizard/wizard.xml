@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="decisions_wizard_form" model="ir.ui.view">
+        <field name="name">decisions wizard form</field>
+        <field name="model">decisions.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <data>
+                    <group col="4" colspan="4">
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <group>
+                        <field name="report_type"/>
+                        <field name="request_type" attrs="{'invisible': [('report_type', '!=', '2')]}"/>
+                        <field name="project" attrs="{'invisible': [('report_type', '!=', '3')]}"/>
+                        <field name="section" attrs="{'invisible': [('report_type', '!=', '4')]}"/>
+                        <field name="name" attrs="{'invisible': [('report_type', '!=', '5')]}"/>
+                     
+                    </group>
+            
+                    <footer>
+                         <button name="check_report" string="Print" type="object" default_focus="1" class="oe_highlight" />
+                        or 
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                    <group>
+                    </group>          
+                </data>
+            </form>
+        </field>
+    </record>
+
+    <record id="decisions_wizard_window" model="ir.actions.act_window">
+        <field name="name">decisions wizard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">decisions.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="decisions_wizard_form"/>
+        <field name="target">new</field>
+
+    </record>
+
+    <menuitem action="decisions_wizard_window" id="decisions_wizard_menu" name="Report" parent="investor_services_menu" sequence="3" groups="general_secretary"/>
+</odoo>
