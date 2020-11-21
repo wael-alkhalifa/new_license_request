@@ -43,19 +43,68 @@
             <field name="name">profile</field>
             <field name="category_id" ref="new_license_category"/>
         </record>
-        <!-- <record id="section_rule" model="ir.rule">
-        <field name="name">section rule</field>
-        <field name="model_id" ref="nia_profile.model_nia_new_license"/>
-         <field name="groups" eval="[(4, ref('new_license_request.section')),(4, ref('new_license_request.section_manager'))]"/>
-        
-        <field name="domain_force">['|',('section','=',False),('section','=',user.section.id)]</field>
-         </record> -->
-        <record id="new_license_rule" model="ir.rule">
-        <field name="name">new license rule</field>
-        <field name="model_id" ref="nia_profile.model_nia_new_license"/>
-        <field name="global" eval="True"/>
-        <field name="domain_force">['|','|',('company_id','=',False),('company_id','in',company_ids),('section','=',False),('section','=',user.section.id)]</field>
-    </record>
+        <record id="new_license_user_rule" model="ir.rule">
+            <field name="name">new_license_user rule</field>
+            <field name="model_id" ref="nia_profile.model_nia_new_license"/>
+            <field name="groups" eval="[(4, ref('new_license_request.new_license_user'))]"/>
+
+            <field name="domain_force">['|',('company_id','=',False),('company_id','in',company_ids)]</field>
+        </record>
+        <record id="business_names_registrar_rule" model="ir.rule">
+            <field name="name">business_names_registrar rule</field>
+            <field name="model_id" ref="nia_profile.model_nia_new_license"/>
+            <field name="groups" eval="[(4, ref('new_license_request.business_names_registrar'))]"/>
+
+            <field name="domain_force">['|',('company_id','=',False),('company_id','in',company_ids)]</field>
+        </record>
+        <record id="general_manager_rule" model="ir.rule">
+            <field name="name">general_manager rule</field>
+            <field name="model_id" ref="nia_profile.model_nia_new_license"/>
+            <field name="groups" eval="[(4, ref('new_license_request.general_manager'))]"/>
+
+            <field name="domain_force">['|',('company_id','=',False),('company_id','in',company_ids)]</field>
+        </record>
+        <record id="general_secretary_rule" model="ir.rule">
+            <field name="name">general_secretary rule</field>
+            <field name="model_id" ref="nia_profile.model_nia_new_license"/>
+            <field name="groups" eval="[(4, ref('new_license_request.general_secretary'))]"/>
+
+            <field name="domain_force">['|',('company_id','=',False),('company_id','in',company_ids)]</field>
+        </record>
+        <record id="counter_rule" model="ir.rule">
+            <field name="name">counter rule</field>
+            <field name="model_id" ref="nia_profile.model_nia_new_license"/>
+            <field name="groups" eval="[(4, ref('new_license_request.counter'))]"/>
+
+            <field name="domain_force">['|',('company_id','=',False),('company_id','in',company_ids)]</field>
+        </record>
+        <record id="profile_rule" model="ir.rule">
+            <field name="name">profile rule</field>
+            <field name="model_id" ref="nia_profile.model_nia_new_license"/>
+            <field name="groups" eval="[(4, ref('new_license_request.profile'))]"/>
+
+            <field name="domain_force">['|',('company_id','=',False),('company_id','in',company_ids)]</field>
+        </record>
+
+        <record id="technical_authority_rule" model="ir.rule">
+            <field name="name">technical_authority rule</field>
+            <field name="model_id" ref="nia_profile.model_nia_new_license"/>
+            <field name="groups" eval="[(4, ref('new_license_request.new_license_technical_authority'))]"/>
+
+            <field name="domain_force">['|','|',('company_id','=',False),('company_id','in',company_ids),('technical_authority','=',False),('technical_authority','=',user.technical_authority.id)]</field>
+        </record>
+        <record id="new_license_section_rule" model="ir.rule">
+            <field name="name">new license section rule</field>
+            <field name="model_id" ref="nia_profile.model_nia_new_license"/>
+            <field name="groups" eval="[(4, ref('new_license_request.section'))]"/>
+            <field name="domain_force"> ['|','|',('company_id','=',False),('company_id','in',company_ids),('section','=',False),('section','=',user.section.id)]</field>
+        </record>
+            <record id="new_license_section_section_manager_rule" model="ir.rule">
+            <field name="name">new license section_manager rule</field>
+            <field name="model_id" ref="nia_profile.model_nia_new_license"/>
+            <field name="groups" eval="[(4, ref('new_license_request.section_manager'))]"/>
+            <field name="domain_force"> ['|','|',('company_id','=',False),('company_id','in',company_ids),('section','=',False),('section','=',user.section.id)]</field>
+        </record>
     </data>
 </odoo>
 

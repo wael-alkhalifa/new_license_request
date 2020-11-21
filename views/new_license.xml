@@ -293,7 +293,8 @@
       <field name="inherit_id" ref="base.view_users_form"/>
       <field name="arch" type="xml">
         <xpath expr="//field[@name='login']" position="after">
-         <field name="section" placeholder="section"/> 
+         <field name="section" placeholder="section"/>
+         <field name="technical_authority" placeholder="technical_authority"/> 
         </xpath>
         
       </field>
@@ -306,6 +307,19 @@
           <!-- Add your fields here -->
 
           <field name="name"/>
+
+        </tree>
+      </field>
+    </record>
+    
+        <record id="technical_authority_tree" model="ir.ui.view">
+      <field name="name">technical_authority</field>
+      <field name="model">technical.authority</field>
+      <field name="arch" type="xml">
+        <tree create="true" delete="true" edit="true" editable="bottom">
+          <!-- Add your fields here -->
+          <field name="name"/>
+          
 
         </tree>
       </field>
@@ -354,7 +368,7 @@
           <!-- Add your fields here -->
 
           <field name="name"/>
-          <field name="seq"/>
+          
 
         </tree>
       </field>
@@ -366,10 +380,11 @@
       <field name="arch" type="xml">
         <tree >
           <!-- Add your fields here -->
-
+          <field name="company_id"/>
           <field name="project"/>
           <field name="name"/>
           <field name="state"/>
+          <field name="respansiable" />
 
         </tree>
       </field>
@@ -412,9 +427,11 @@
             </group>
             <group>
               <field name="company_id"/>
+              <field name="respansiable"  domain="[('section','=',section)]"/>
             </group>
             <group col="4" colspan="4">
               <field name="project"/>
+              <field name="technical_authority"/>
               <field name="business_name"/>
               <field name="business_name_number"/>
               <field name="order_number"/>
@@ -428,7 +445,7 @@
               <field name="id_type"/>
               <field name="id_number"/>
               <field name="issuance_date"/>
-              <field name="license_number"/>
+              
               <field name="fees" attrs="{'invisible': [('state', 'not in', ['2','4','6'])]}"/>
               <field name="business_name" attrs="{'invisible': [('state', '!=', '5')]}"/>
               <field name="business_name_number" attrs="{'invisible': [('state', '!=', '5')]}"/>
@@ -535,7 +552,11 @@
       <field name="res_model">child.activity</field>
       <field name="view_mode">tree,form</field>
     </record>
-
+    <record model="ir.actions.act_window" id="technical_authority_action_window">
+      <field name="name">technical_authority</field>
+      <field name="res_model">technical.authority</field>
+      <field name="view_mode">tree</field>
+    </record>
     <record model="ir.actions.act_window" id="nationality_action_window">
       <field name="name">nationality</field>
       <field name="res_model">nia.nationality</field>
@@ -557,6 +578,7 @@
     <menuitem name="child activity" id="child_activity_menu" parent="setting_menu" action="child_activity_action_window" />
     <menuitem name="nationality" id="nationality_menu" parent="setting_menu" action="nationality_action_window" />
     <menuitem name="الرسوم" id="fees_menu" parent="setting_menu" action="fees_action_window" />
+    <menuitem name="technical_authority" id="technical_authority_menu" parent="setting_menu" action="technical_authority_action_window" />
 
 
   </data>

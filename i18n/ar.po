@@ -6,21 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-03 17:29+0000\n"
-"PO-Revision-Date: 2020-11-03 17:29+0000\n"
+"POT-Creation-Date: 2020-11-21 12:59+0000\n"
+"PO-Revision-Date: 2020-11-21 12:59+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: new_license_request
-#: model_terms:ir.ui.view,arch_db:new_license_request.print_payment
-msgid ""
-"<span>التاريخ</span>\n"
-"              <span> : </span>"
-msgstr ""
 
 #. module: new_license_request
 #: model_terms:ir.ui.view,arch_db:new_license_request.nia_new_license_view_form
@@ -31,7 +24,6 @@ msgstr "اسم العمل"
 #: model:res.groups,name:new_license_request.business_names_registrar
 msgid "Business Names Registrar"
 msgstr "مسجل اسماء الاعمال"
-
 
 #. module: new_license_request
 #: model_terms:ir.ui.view,arch_db:new_license_request.nia_new_license_view_form
@@ -47,6 +39,11 @@ msgstr "الامين العام"
 #: model:res.groups,name:new_license_request.general_manager
 msgid "General manager"
 msgstr "المدير العام الادارة"
+
+#. module: new_license_request
+#: model_terms:ir.ui.view,arch_db:new_license_request.print_new_license_doc
+msgid "Logo"
+msgstr ""
 
 #. module: new_license_request
 #: model:ir.actions.act_window,name:new_license_request.child_activity_action_window
@@ -79,6 +76,11 @@ msgstr "تحذير"
 #: model_terms:ir.ui.view,arch_db:new_license_request.nia_new_license_view_form
 msgid "features and terms"
 msgstr "المميزات والشروط"
+
+#. module: new_license_request
+#: model:ir.actions.act_window,name:new_license_request.fees_action_window
+msgid "fees"
+msgstr ""
 
 #. module: new_license_request
 #: model_terms:ir.ui.view,arch_db:new_license_request.nia_new_license_view_form
@@ -115,7 +117,6 @@ msgstr "الجنسية"
 #. module: new_license_request
 #: model:ir.actions.act_window,name:new_license_request.new_license_action_window
 #: model:ir.actions.report,name:new_license_request.print_new_license
-#: model:ir.module.category,name:new_license_request.new_license_category
 #: model:ir.ui.menu,name:new_license_request.new_license_menu
 #: model:ir.ui.menu,name:new_license_request.services_menu
 msgid "new license"
@@ -173,6 +174,7 @@ msgid "requirments"
 msgstr "المطلوبات"
 
 #. module: new_license_request
+#: model_terms:ir.ui.view,arch_db:new_license_request.res_user_inherit_view_id
 #: model:res.groups,name:new_license_request.section
 msgid "section"
 msgstr "القطاع"
@@ -219,6 +221,13 @@ msgid "technical authority"
 msgstr "الجهة الفنية"
 
 #. module: new_license_request
+#: model:ir.actions.act_window,name:new_license_request.technical_authority_action_window
+#: model:ir.ui.menu,name:new_license_request.technical_authority_menu
+#: model_terms:ir.ui.view,arch_db:new_license_request.res_user_inherit_view_id
+msgid "technical_authority"
+msgstr "الجهة الفنية"
+
+#. module: new_license_request
 #: model_terms:ir.ui.view,arch_db:new_license_request.nia_new_license_view_form
 msgid "technical_authority_confirm"
 msgstr "موافقة الجهة الفنية"
@@ -229,31 +238,8 @@ msgid "technical_authority_reject"
 msgstr "رفض"
 
 #. module: new_license_request
-#: model_terms:ir.ui.view,arch_db:new_license_request.print_payment
-msgid ""
-"ارجو "
-"توريد..................................................................عبارةعن"
-" ....................................................................."
-msgstr ""
-
-#. module: new_license_request
-#: model_terms:ir.ui.view,arch_db:new_license_request.print_payment
-msgid ""
-"اسم  الموظف "
-"...............................................................التوقيع "
-"......................................................................"
-msgstr ""
-
-#. module: new_license_request
 #: model_terms:ir.ui.view,arch_db:new_license_request.print_new_license_doc
 msgid "اسم العمل:"
-msgstr ""
-
-#. module: new_license_request
-#: model_terms:ir.ui.view,arch_db:new_license_request.print_payment
-msgid ""
-"اسم "
-"المشروع..............................................................................................................................................."
 msgstr ""
 
 #. module: new_license_request
@@ -262,13 +248,48 @@ msgid "الامين العام"
 msgstr ""
 
 #. module: new_license_request
+#: model_terms:ir.ui.view,arch_db:new_license_request.print_payment
+msgid "التاريخ"
+msgstr ""
+
+#. module: new_license_request
+#: model_terms:ir.ui.view,arch_db:new_license_request.print_payment
+msgid "التوقيع"
+msgstr ""
+
+#. module: new_license_request
+#: model:ir.ui.menu,name:new_license_request.fees_menu
+msgid "الرسوم"
+msgstr ""
+
+#. module: new_license_request
+#: model_terms:ir.ui.view,arch_db:new_license_request.print_payment
+msgid "المبلغ"
+msgstr ""
+
+#. module: new_license_request
+#: model_terms:ir.ui.view,arch_db:new_license_request.print_payment
+msgid "المبلغ المستلم"
+msgstr ""
+
+#. module: new_license_request
+#: model_terms:ir.ui.view,arch_db:new_license_request.print_payment
+msgid "المشروع"
+msgstr ""
+
+#. module: new_license_request
 #: model_terms:ir.ui.view,arch_db:new_license_request.print_new_license_doc
 msgid "المميزات الاتية:"
 msgstr ""
 
 #. module: new_license_request
+#: model_terms:ir.ui.view,arch_db:new_license_request.print_payment
+msgid "الموظف"
+msgstr ""
+
+#. module: new_license_request
 #: model_terms:ir.ui.view,arch_db:new_license_request.print_new_license_doc
-msgid "بجهة:"
+msgid "بجهة :"
 msgstr ""
 
 #. module: new_license_request
@@ -277,14 +298,6 @@ msgid ""
 "بعد الاطلاع على احكام المواد (21/1/أ/2)(24)(25)من قانون تشجيع الاستثمار القومي لسنة 2013 والمرسوم الدستوري\n"
 "              رقم (28) لسنة 2019 الصادر من المجلس العسكري الانتقالي بتاريخ 26/6/2019 وخطاب السيد وزير المالية والتخطيط\n"
 "              الاقتصادي بتاريخ 2019/11/17 وعملا بالسلطات المخولة لي بموجب احكام المادة (14/و/ز/ح) قررت منح المنشأة التالية:"
-msgstr ""
-
-#. module: new_license_request
-#: model_terms:ir.ui.view,arch_db:new_license_request.print_payment
-msgid ""
-"بموجب  الايصال "
-"رقم............................................................بتاريخ "
-"......................................................................"
 msgstr ""
 
 #. module: new_license_request
@@ -299,19 +312,17 @@ msgstr ""
 
 #. module: new_license_request
 #: model_terms:ir.ui.view,arch_db:new_license_request.print_payment
-msgid ""
-"تم استلام "
-"................................................................................................................................................."
-msgstr ""
-
-#. module: new_license_request
-#: model_terms:ir.ui.view,arch_db:new_license_request.print_payment
 msgid "تم بواسطة الشئون المالية"
 msgstr ""
 
 #. module: new_license_request
+#: model_terms:ir.ui.view,arch_db:new_license_request.print_payment
+msgid "رقم  الايصال"
+msgstr ""
+
+#. module: new_license_request
 #: model_terms:ir.ui.view,arch_db:new_license_request.print_new_license_doc
-msgid "رقم اسم العمل:"
+msgid "رقم اسم العمل :"
 msgstr ""
 
 #. module: new_license_request
@@ -326,20 +337,27 @@ msgstr ""
 
 #. module: new_license_request
 #: model_terms:ir.ui.view,arch_db:new_license_request.print_new_license_doc
-msgid "صورة الى:"
+msgid "صورة الى :"
+msgstr ""
+
+#. module: new_license_request
+#: model:ir.module.category,name:new_license_request.new_license_category
+msgid "طلب ترخيص جديد"
 msgstr ""
 
 #. module: new_license_request
 #: model_terms:ir.ui.view,arch_db:new_license_request.print_payment
-msgid ""
-"ع/مدير الشئون "
-"المالية........................................................التوقيع "
-"....................................................................."
+msgid "عبارة عن"
+msgstr ""
+
+#. module: new_license_request
+#: model_terms:ir.ui.view,arch_db:new_license_request.print_payment
+msgid "مدير الشئون المالية"
 msgstr ""
 
 #. module: new_license_request
 #: model_terms:ir.ui.view,arch_db:new_license_request.print_new_license_doc
-msgid "ملحوظة:"
+msgid "ملحوظة :"
 msgstr ""
 
 #. module: new_license_request
